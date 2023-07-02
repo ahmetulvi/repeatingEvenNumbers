@@ -1,17 +1,36 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import jdk.jshell.EvalException;
+import java.util.Arrays;
 public class Main {
+
+    static boolean isFind(int[] arr, int value){
+            for (int i: arr){
+                if (i==value){
+                    return true;
+                }
+            }
+            return false;
+    }
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        int[] list={2,3,5,6,1,2,5,7,8,10,6,10};
+        int[] duplicate=new int[list.length];
+        int startIndex=0;
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        for (int i=0;i< list.length;i++){
+            for (int j=0; j<i;j++){
+                if ((i!=j) && (list[i]==list[j])){
+                   if (list[i]%2==0){
+                       if (!isFind(duplicate,list[i])){
+                           duplicate[startIndex++]=list[i];
+                       }
+                   }
+                }
+            }
+        }
+        for (int value:duplicate){
+            if (value!=0){
+                System.out.println(value);
+            }
         }
     }
+
 }
